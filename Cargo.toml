@@ -1,0 +1,41 @@
+[package]
+name = "qr_scaner"
+version = "0.5.7"
+edition = "2021"
+description = "A lightweight Windows system-tray screen QR code scanner"
+
+[[bin]]
+name = "qr-scanner"
+path = "src/main.rs"
+
+[dependencies]
+xcap = "0.4"
+rqrr = "0.9"
+rxing = "0.8"
+image = "0.25"
+arboard = "3.4"
+open = "5.3"
+ureq = "2.12"
+serde_json = "1.0"
+
+[dependencies.windows-sys]
+version = "0.59"
+features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_System_LibraryLoader",
+    "Win32_UI_Controls",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+]
+
+[build-dependencies]
+winresource = "0.1"
+image = "0.25"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+opt-level = "s"
